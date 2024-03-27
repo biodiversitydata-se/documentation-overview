@@ -57,3 +57,6 @@ Other:
 - [geoserver](https://github.com/biodiversitydata-se/geoserver)
 - [mirroreum](https://github.com/biodiversitydata-se/mirroreum)
 - [sbdi4r2](https://github.com/biodiversitydata-se/sbdi4r2)
+
+## Data ingestion
+Datasets are published by the various data providers in the [GBIF IPT](https://www.gbif.se/ipt). The data is then loaded into the Bioatlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application. Documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in [sbdi-install](https://github.com/biodiversitydata-se/sbdi-install/blob/main/roles/pipelines/README.md).
