@@ -5,11 +5,11 @@ This document serves as a starting point for documentation of the SBDI system, s
 ## Hosting
 - Cloud servers are hosted by [Safespring](https://dashboard.sto1.safespring.com/) using [Openstack](https://www.openstack.org/).
 - Domains (biodiversitydata.se plus a few more) are managed by [Loopia](https://www.loopia.se/loggain/).
-- SSL/TLS Certificates are provided by Geant?
+- SSL/TLS Certificates are provided by Sectigo (through the IT department at NRM).
 - Applications run in [Docker](https://www.docker.com/), the majority in a Docker Swarm setup consisting of several manager and worker nodes. Some applications run on separate servers.
 
 ### Application overview
-![SBDI Applications main](images/SBDI-Applications-main.png)
+![SBDI Applications swarm](images/SBDI-Applications-swarm.png)
 ![SBDI Applications other](images/SBDI-Applications-other.png)
 
 
@@ -59,4 +59,4 @@ Other:
 - [sbdi4r2](https://github.com/biodiversitydata-se/sbdi4r2)
 
 ## Data ingestion
-Datasets are published by the various data providers in the [GBIF IPT](https://www.gbif.se/ipt). The data is then loaded into the Bioatlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application. Documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in [sbdi-install](https://github.com/biodiversitydata-se/sbdi-install/blob/main/roles/pipelines/README.md).
+Datasets are published by the various data providers in the [GBIF Sweden IPT](https://www.gbif.se/ipt). The data is then loaded into the Bioatlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application. Documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in [sbdi-install](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md).
