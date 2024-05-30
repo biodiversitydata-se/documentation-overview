@@ -65,12 +65,16 @@ The major steps are listed below, detailed documentation for data ingestion can 
 
 * Create the live-pipelines machines using Terraform
 * Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines. Try connecting and it will tell you how to remove the current key. (Or possibly use the ssh_access playbook in ansible?)
-* Machine keys for spark and hadoop users on the live-pipelines machines will also need to be updated using:
+* Update machine keys for hadoop and spark users (on live-pipelines) and then start hadoop and spark:
     ```
-    ansible-playbook -i inventories/prod pipelines.yml -t update-host-keys --ask-become-pass
+    ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
     ```
-* Start Hadoop (`start-dfs.sh` as hadoop user)
-* Start Spark (`spark-cluster.sh --start` as spark user)
+* ~~Start Hadoop (`start-dfs.sh` as hadoop user)~~
+* ~~Start Spark (`spark-cluster.sh --start` as spark user)~~
+* (Optional) To monitor the pipelines machines: uncomment live-pipelines in the `monitoring_target` section of the prod inventory. Deploy and restart Prometheus:
+    ```
+    ansible-playbook -i inventories/prod monitoring.yml -t observer --ask-become-pass
+    ```
 * Run pipelines
 * Backup UUID:s and logs to nrm-sbdibackup
 * Remove the live-pipelines machines manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
