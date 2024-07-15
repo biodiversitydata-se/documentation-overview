@@ -68,7 +68,10 @@ Datasets are published by the various data providers in the [GBIF Sweden IPT](ht
 The major steps are listed below, detailed documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in sbdi-install ([terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)).
 
 * Create the live-pipelines machines using Terraform
-* Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines. Try connecting and it will tell you how to remove the current key. (Or possibly use the ssh_access playbook in ansible?)
+* Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines:
+    ```
+    ansible-playbook -i inventories/prod pipelines_local_access.yml
+    ```
 * Update machine keys for hadoop and spark users (on live-pipelines) and then start hadoop and spark:
     ```
     ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
