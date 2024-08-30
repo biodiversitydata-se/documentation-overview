@@ -63,9 +63,30 @@ Other:
 - [mirroreum](https://github.com/biodiversitydata-se/mirroreum)
 - [sbdi4r2](https://github.com/biodiversitydata-se/sbdi4r2)
 
-## Data ingestion
-Datasets are published by the various data providers in the [GBIF Sweden IPT](https://www.gbif.se/ipt). The data is then loaded into the Bioatlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application. 
+## Data
+Datasets are published by the various data providers in the [GBIF Sweden IPT](https://www.gbif.se/ipt). Dataset meta data is synced from the IPT to the Atlas using the [Collectory](https://collections.biodiversitydata.se/). The occurrence records are then loaded into the Atlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application. 
 
+### Syncing datasets from IPT to Atlas
+Dataset meta data is synced from the [IPT GBIF Sweden](https://collections.biodiversitydata.se/dataProvider/show/dp0) data provider page in the Collectory admin interface. Use the **Update data resources** button. 
+To view differences between datasets in the IPT and the Atlas click **Compare IPT vs Atlas**.
+
+#### Adding a new dataset
+When a new dataset has been added to the IPT it will be created in the Atlas by the above sync procedure. However, it will require some additional configuration.
+
+On the created Data resource:
+- DOI
+- Institution
+- Darwin core terms that uniquely identify a record (if other than catalogNumber)
+- Default values for DwC fields (if needed)
+- Record consumers - institution and collection (after you've created the collection)
+
+Create a new Collection:
+- Public description (copy from data resource)
+- Contacts (copy from data resource)
+- Provider codes - institution and collection (make sure these are present in occurrence.txt, otherwise add to *Default values for DwC fields* on the data resource)
+
+
+### Loading records into the Atlas
 The major steps are listed below, detailed documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in sbdi-install ([terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)).
 
 * Create the live-pipelines machines using Terraform
