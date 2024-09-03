@@ -23,8 +23,8 @@ This includes:
 - Monitoring
 - and more
 
-### Regular maintenance
-- [General](https://github.com/biodiversitydata-se/documentation-overview/wiki/General-maintenance)
+### Regular maintenance and checkup
+- [General checkup](https://github.com/biodiversitydata-se/documentation-overview/wiki/General-checkup)
 - [Monitoring](https://github.com/biodiversitydata-se/documentation-overview/wiki/Monitoring-maintenance)
 - [System updates](https://github.com/biodiversitydata-se/documentation-overview/wiki/Running-system-updates-(apt))
 
