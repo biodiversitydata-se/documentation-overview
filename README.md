@@ -1,6 +1,7 @@
 # Documentation overview
+This document serves as a starting point for documentation of the SBDI system, services and applications managed by NRM (this can be expanded in the future).
 
-This document serves as a starting point for documentation of the SBDI system, services and applications managed by NRM (this can be expanded in the future). 
+More documentation can also be found in the [wiki](https://github.com/biodiversitydata-se/documentation-overview/wiki).
 
 ## Hosting
 - Cloud servers are hosted by [Safespring](https://dashboard.sto1.safespring.com/) using [Openstack](https://www.openstack.org/).
@@ -11,7 +12,6 @@ This document serves as a starting point for documentation of the SBDI system, s
 ### Application overview
 ![SBDI Applications swarm](images/SBDI-Applications-swarm.png)
 ![SBDI Applications other](images/SBDI-Applications-other.png)
-
 
 ## DevOps
 Many devops tasks are automated using [Ansible](https://www.ansible.com/) and [Terraform](https://www.terraform.io/) and can be found, along with documentation, in the [sbdi-install](https://github.com/biodiversitydata-se/sbdi-install) repository.
@@ -24,9 +24,9 @@ This includes:
 - and more
 
 ### Regular maintenance and checkup
+- [System updates](https://github.com/biodiversitydata-se/documentation-overview/wiki/Running-system-updates-(apt))
 - [General checkup](https://github.com/biodiversitydata-se/documentation-overview/wiki/General-checkup)
 - [Monitoring](https://github.com/biodiversitydata-se/documentation-overview/wiki/Monitoring-maintenance)
-- [System updates](https://github.com/biodiversitydata-se/documentation-overview/wiki/Running-system-updates-(apt))
 
 ## Applications
  Most of the applications are forked from [ALA](https://github.com/AtlasOfLivingAustralia/). All of the forked repositories have an *sbdi* folder containing SBDI specific documentation and configuration. In most repositories there is also a GitHub issue called *SBDI modifications* which lists and describes the SBDI specific changes we have made to the code. The applications are built using [GitHub Actions](https://docs.github.com/en/actions) and published [as Docker images](https://github.com/orgs/biodiversitydata-se/packages).
