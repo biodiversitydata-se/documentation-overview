@@ -9,6 +9,9 @@ More documentation can also be found in the [wiki](https://github.com/biodiversi
 - SSL/TLS Certificates are provided by Sectigo (through the IT department at NRM).
 - Applications run in [Docker](https://www.docker.com/), the majority in a Docker Swarm setup consisting of several manager and worker nodes. Some applications run on separate servers.
 
+### Server overview
+![SBDI Servers](images/SBDI-Servers.png)
+
 ### Application overview
 ![SBDI Applications swarm](images/SBDI-Applications-swarm.png)
 ![SBDI Applications other](images/SBDI-Applications-other.png)
