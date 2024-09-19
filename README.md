@@ -92,7 +92,7 @@ Create a new Collection:
 ### Loading records into the Atlas
 The major steps are listed below, detailed documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in sbdi-install ([terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)).
 
-* Create the live-pipelines machines using Terraform
+* [Create the live-pipelines machines](https://github.com/biodiversitydata-se/sbdi-install/tree/main/terraform#running) using Terraform
 * Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines:
     ```
     ansible-playbook -i inventories/prod pipelines_local_access.yml
@@ -101,12 +101,17 @@ The major steps are listed below, detailed documentation for data ingestion can 
     ```
     ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
     ```
-* ~~Start Hadoop (`start-dfs.sh` as hadoop user)~~
-* ~~Start Spark (`spark-cluster.sh --start` as spark user)~~
 * (Optional) To monitor the pipelines machines: uncomment live-pipelines in the `monitoring_target` section of the prod inventory. Deploy and restart Prometheus:
     ```
     ansible-playbook -i inventories/prod monitoring.yml -t observer --ask-become-pass
     ```
-* Run pipelines
-* Backup UUID:s and logs to nrm-sbdibackup
-* Remove the live-pipelines machines manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
+* [Run pipelines](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#running-pipelines)
+* [Backup UUID:s and logs](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#backup) to nrm-sbdibackup
+* Remove the live-pipelines machines using OpenStack API:
+    ```
+    openstack server stop live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
+    ```
+    ```
+    openstack server delete live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
+    ``` 
+  Or manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
