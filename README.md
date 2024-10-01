@@ -79,7 +79,8 @@ When a new dataset has been added to the IPT it will be created in the Atlas by 
 On the created Data resource:
 - DOI
 - Institution
-- Darwin core terms that uniquely identify a record (if other than catalogNumber)
+- Resource type (if needed, defaults to `records`)
+- Darwin core terms that uniquely identify a record (if other than `catalogNumber`)
 - Default values for DwC fields (if needed)
 - Record consumers - institution and collection (after you've created the collection)
 
@@ -92,26 +93,39 @@ Create a new Collection:
 ### Loading records into the Atlas
 The major steps are listed below, detailed documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in sbdi-install ([terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)).
 
-* [Create the live-pipelines machines](https://github.com/biodiversitydata-se/sbdi-install/tree/main/terraform#running) using Terraform
-* Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines:
+* Create and start the pipelines machines:
     ```
-    ansible-playbook -i inventories/prod pipelines_local_access.yml
+    ./utils/pipelines/startup.sh
     ```
-* Update machine keys for hadoop and spark users (on live-pipelines) and then start hadoop and spark:
-    ```
-    ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
-    ```
+    or  manually:
+    * [Create the live-pipelines machines](https://github.com/biodiversitydata-se/sbdi-install/tree/main/terraform#running) using Terraform
+    * Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines:
+        ```
+        ansible-playbook -i inventories/prod pipelines_local_access.yml
+        ```
+    * Update machine keys for hadoop and spark users (on live-pipelines) and then start hadoop and spark:
+        ```
+        ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
+        ```
 * (Optional) To monitor the pipelines machines: uncomment live-pipelines in the `monitoring_target` section of the prod inventory. Deploy and restart Prometheus:
     ```
     ansible-playbook -i inventories/prod monitoring.yml -t observer --ask-become-pass
     ```
 * [Run pipelines](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#running-pipelines)
-* [Backup UUID:s and logs](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#backup) to nrm-sbdibackup
-* Remove the live-pipelines machines using OpenStack API:
+* Backup to NRM:
     ```
-    openstack server stop live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
+    ./utils/pipelines/backup-to-nrm.sh
     ```
+    * or  manually: [Backup UUID:s and logs](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#backup) to nrm-sbdibackup
+* Remove the live-pipelines machines
     ```
-    openstack server delete live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
-    ``` 
-  Or manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
+    ./utils/pipelines/shutdown.sh
+    ```
+    * or using OpenStack API:
+        ```
+        openstack server stop live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
+        ```
+        ```
+        openstack server delete live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
+        ``` 
+    * or manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
