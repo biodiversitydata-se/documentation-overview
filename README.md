@@ -32,7 +32,9 @@ This includes:
 - [Monitoring](https://github.com/biodiversitydata-se/documentation-overview/wiki/Monitoring-maintenance)
 
 ## Applications
- Most of the applications are forked from [ALA](https://github.com/AtlasOfLivingAustralia/). All of the forked repositories have an *sbdi* folder containing SBDI specific documentation and configuration. In most repositories there is also a GitHub issue called *SBDI modifications* which lists and describes the SBDI specific changes we have made to the code. The applications are built using [GitHub Actions](https://docs.github.com/en/actions) and published [as Docker images](https://github.com/orgs/biodiversitydata-se/packages).
+ Most of the applications are forked from [ALA](https://github.com/AtlasOfLivingAustralia/). All of the forked repositories have an *sbdi* folder containing SBDI specific documentation and configuration. In most repositories there is also a GitHub issue called *SBDI modifications* which lists and describes the SBDI specific changes we have made to the code. The applications are built using [GitHub Actions](https://docs.github.com/en/actions) and published [as Docker images](https://github.com/orgs/biodiversitydata-se/packages). 
+
+Follow these instructions when [updating an ALA fork](https://github.com/biodiversitydata-se/documentation-overview/wiki/Updating-an-ALA-fork-from-upstream).
 
 ALA forks:
 - [ala-bie-hub](https://github.com/biodiversitydata-se/ala-bie-hub)
