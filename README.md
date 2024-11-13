@@ -39,7 +39,9 @@ Follow these instructions when [updating an ALA fork](https://github.com/biodive
 [Bioatlas repos are listed here](https://github.com/biodiversitydata-se/repo-overview?tab=readme-ov-file#bioatlas). 
 
 ## Data
-Datasets are published by the various data providers in the [GBIF Sweden IPT](https://www.gbif.se/ipt). Dataset meta data is synced from the IPT to the Atlas using the [Collectory](https://collections.biodiversitydata.se/). The occurrence records are then loaded into the Atlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application. 
+Datasets are published by the various data providers in the [GBIF Sweden IPT](https://www.gbif.se/ipt). Dataset meta data is synced from the IPT to the Atlas using the [Collectory](https://collections.biodiversitydata.se/). The occurrence records are then loaded into the Atlas using the [pipelines](https://github.com/biodiversitydata-se/pipelines) application.
+
+Some datasets are loaded from GBIF. These are datasets that contain occurrence records located in Sweden but are published by non-Swedish organizations. They are called repatriated datasets. Only the Swedish records are used from these datasets.
 
 ### Syncing datasets from IPT to Atlas
 Dataset meta data is synced from the [IPT GBIF Sweden](https://collections.biodiversitydata.se/dataProvider/show/dp0) data provider page in the Collectory admin interface. Use the **Update data resources** button. 
@@ -61,6 +63,11 @@ Create a new Collection:
 - Contacts (copy from data resource)
 - Provider codes - institution and collection (make sure these are present in occurrence.txt, otherwise add to *Default values for DwC fields* on the data resource)
 
+### Syncing (repatriated) datasets from GBIF to Atlas
+Dataset meta data is synced from the [GBIF Repatriated](https://collections.biodiversitydata.se/dataProvider/show/dp4) data provider page in the Collectory admin interface. To view differences between datasets in GBIF and the Atlas click **Compare GBIF vs Atlas**. From that view the datasets that have changed can be updated.
+
+#### Adding a new dataset
+Adding new repatriated datasets is done by clicking **Repatriate data** from the Collectory admin start page.
 
 ### Loading records into the Atlas
 The major steps are listed below, detailed documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in sbdi-install ([terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)).
