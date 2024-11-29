@@ -13,8 +13,8 @@ More documentation can also be found in the [wiki](https://github.com/biodiversi
 ![SBDI Servers](images/SBDI-Servers.png)
 
 ### Application overview
-![SBDI Applications swarm](images/SBDI-Applications-swarm.png)
-![SBDI Applications other](images/SBDI-Applications-other.png)
+![SBDI Applications 1](images/SBDI-Applications-1.png)
+![SBDI Applications 2](images/SBDI-Applications-2.png)
 
 ## DevOps
 Many devops tasks are automated using [Ansible](https://www.ansible.com/) and [Terraform](https://www.terraform.io/) and can be found, along with documentation, in the [sbdi-install](https://github.com/biodiversitydata-se/sbdi-install) repository.
