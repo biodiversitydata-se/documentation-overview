@@ -62,6 +62,9 @@ Create a new Collection:
 - Public description (copy from data resource)
 - Contacts (copy from data resource)
 - Provider codes - institution and collection (make sure these are present in occurrence.txt, otherwise add to *Default values for DwC fields* on the data resource)
+- Keywords
+- Collection type and status
+- Taxonomic range
 
 ### Syncing (repatriated) datasets from GBIF to Atlas
 Dataset meta data is synced from the [GBIF Repatriated](https://collections.biodiversitydata.se/dataProvider/show/dp4) data provider page in the Collectory admin interface. To view differences between datasets in GBIF and the Atlas click **Compare GBIF vs Atlas**. From that view the datasets that have changed can be updated.
