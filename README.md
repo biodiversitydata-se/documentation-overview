@@ -9,13 +9,6 @@ More documentation can also be found in the [wiki](https://github.com/biodiversi
 - SSL/TLS Certificates are provided by Sectigo (through the IT department at NRM).
 - Applications run in [Docker](https://www.docker.com/), the majority in a Docker Swarm setup consisting of several manager and worker nodes. Some applications run on separate servers.
 
-### Server overview
-![SBDI Servers](images/SBDI-Servers.png)
-
-### Application overview
-![SBDI Applications 1](images/SBDI-Applications-1.png)
-![SBDI Applications 2](images/SBDI-Applications-2.png)
-
 ## DevOps
 Many devops tasks are automated using [Ansible](https://www.ansible.com/) and [Terraform](https://www.terraform.io/) and can be found, along with documentation, in the [sbdi-install](https://github.com/biodiversitydata-se/sbdi-install) repository.
 
