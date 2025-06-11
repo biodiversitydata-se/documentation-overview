@@ -45,7 +45,9 @@ To view differences between datasets in the IPT and the Atlas click **Compare IP
 When a new dataset has been added to the IPT it will be created in the Atlas by the above sync procedure. However, it will require some additional configuration.
 
 On the created Data resource:
-- DOI
+- Public description (verify)
+- Contacts (verify)
+- DOI (from gbif.org)
 - Institution
 - Resource type (if needed, defaults to `records`)
 - Darwin core terms that uniquely identify a record (if other than `catalogNumber`)
