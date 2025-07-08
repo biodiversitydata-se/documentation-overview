@@ -6,7 +6,7 @@ More documentation can also be found in the [wiki](https://github.com/biodiversi
 ## Hosting
 - Cloud servers are hosted by [Safespring](https://dashboard.sto1.safespring.com/) using [Openstack](https://www.openstack.org/).
 - Domains (biodiversitydata.se plus a few more) are managed by [Loopia](https://www.loopia.se/loggain/).
-- SSL/TLS Certificates are provided by Sectigo (through the IT department at NRM).
+- SSL/TLS Certificates are provided by [Let's encrypt](https://letsencrypt.org/) using [certbot](https://certbot.eff.org/).
 - Applications run in [Docker](https://www.docker.com/), the majority in a Docker Swarm setup consisting of several manager and worker nodes. Some applications run on separate servers.
 
 ## DevOps
@@ -24,6 +24,7 @@ This includes:
 - [General checkup](https://github.com/biodiversitydata-se/documentation-overview/wiki/General-checkup)
 - [Ancillary systems](https://github.com/biodiversitydata-se/documentation-overview/wiki/Ancillary-systems-maintenance)
 - [Rebuild docker images and check versions](https://github.com/biodiversitydata-se/documentation-overview/wiki/Rebuild-docker-images-and-check-versions)
+- [User accounts](https://github.com/biodiversitydata-se/documentation-overview/wiki/Applications-with-user-accounts)
 
 ## Applications
 Most of the applications are forked from [ALA](https://github.com/AtlasOfLivingAustralia/). All of the forked repositories have an *sbdi* folder containing SBDI specific documentation and configuration. In most repositories there is also a GitHub issue called *SBDI modifications* which lists and describes the SBDI specific changes we have made to the code. The applications are built using [GitHub Actions](https://docs.github.com/en/actions) and published [as Docker images](https://github.com/orgs/biodiversitydata-se/packages). 
@@ -85,25 +86,13 @@ The major steps are listed below, detailed documentation for data ingestion can 
         ```
         ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
         ```
-* (Optional) To monitor the pipelines machines: uncomment live-pipelines in the `monitoring_target` section of the prod inventory. Deploy and restart Prometheus:
-    ```
-    ansible-playbook -i inventories/prod monitoring.yml -t observer --ask-become-pass
-    ```
 * [Run pipelines](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#running-pipelines)
 * Backup to NRM:
     ```
     ./utils/pipelines/backup-to-nrm.sh
     ```
-    * or  manually: [Backup UUID:s and logs](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#backup) to nrm-sbdibackup
-* Remove the live-pipelines machines
+* Remove the pipelines machines
     ```
     ./utils/pipelines/shutdown.sh
     ```
-    * or using OpenStack API:
-        ```
-        openstack server stop live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
-        ```
-        ```
-        openstack server delete live-pipelines-1 live-pipelines-2 live-pipelines-3 live-pipelines-4 live-pipelines-5 live-pipelines-6 live-pipelines-7
-        ``` 
     * or manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
