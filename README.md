@@ -96,3 +96,6 @@ The major steps are listed below, detailed documentation for data ingestion can 
     ./utils/pipelines/shutdown.sh
     ```
     * or manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
+
+## Spatial portal layers
+[See wiki](https://github.com/biodiversitydata-se/documentation-overview/wiki/Spatial-portal-layers)
