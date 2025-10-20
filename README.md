@@ -21,7 +21,7 @@ This includes:
 
 ### Regular maintenance and checkup
 - [System updates](https://github.com/biodiversitydata-se/documentation-overview/wiki/Running-system-updates-(apt))
-- [General checkup](https://github.com/biodiversitydata-se/documentation-overview/wiki/General-checkup)
+- [General maintenance](https://github.com/biodiversitydata-se/documentation-overview/wiki/General-maintenance)
 - [Ancillary systems](https://github.com/biodiversitydata-se/documentation-overview/wiki/Ancillary-systems-maintenance)
 - [Rebuild docker images and check versions](https://github.com/biodiversitydata-se/documentation-overview/wiki/Rebuild-docker-images-and-check-versions)
 - [User accounts](https://github.com/biodiversitydata-se/documentation-overview/wiki/Applications-with-user-accounts)
