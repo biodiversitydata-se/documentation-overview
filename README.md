@@ -70,30 +70,35 @@ Dataset meta data is synced from the [GBIF Repatriated](https://collections.biod
 Adding new repatriated datasets is done by clicking **Repatriate data** from the Collectory admin start page.
 
 ### Loading records into the Atlas
-The major steps are listed below, detailed documentation for data ingestion can be found in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md) and in sbdi-install ([terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)).
+The major steps are listed below, detailed documentation for data ingestion can be found in sbdi-install ([dataset-ingestor](https://github.com/biodiversitydata-se/sbdi-install/blob/main/dataset-ingestor/), [terraform](https://github.com/biodiversitydata-se/sbdi-install/blob/main/terraform) and [ansible](https://github.com/biodiversitydata-se/sbdi-install/blob/main/ansible/roles/pipelines/README.md)) and in [the pipelines repository](https://github.com/biodiversitydata-se/pipelines/blob/master/sbdi/README.md).
 
 * Create and start the pipelines machines:
     ```
-    ./utils/pipelines/startup.sh
+    # From sbdi-install/dataset-ingestor
+    ./startup.sh
     ```
     or  manually:
     * [Create the live-pipelines machines](https://github.com/biodiversitydata-se/sbdi-install/tree/main/terraform#running) using Terraform
     * Machine keys stored in `.ssh/known_hosts` (on your local machine) will have changed and need to be updated in order to connect to the machines:
         ```
+        # From sbdi-install
         ansible-playbook -i inventories/prod pipelines_local_access.yml
         ```
     * Update machine keys for hadoop and spark users (on live-pipelines) and then start hadoop and spark:
         ```
+        # From sbdi-install
         ansible-playbook -i inventories/prod pipelines.yml -t update_host_keys,start_cluster --ask-become-pass
         ```
 * [Run pipelines](https://github.com/biodiversitydata-se/pipelines/tree/master/sbdi#running-pipelines)
 * Backup to NRM:
     ```
-    ./utils/pipelines/backup-to-nrm.sh
+    # From sbdi-install/dataset-ingestor
+    ./backup-to-nrm.sh
     ```
 * Remove the pipelines machines
     ```
-    ./utils/pipelines/shutdown.sh
+    # From sbdi-install/dataset-ingestor
+    ./shutdown.sh
     ```
     * or manually in Safespring UI (*Shut Off Instance* followed by *Delete Instance*)
 
